@@ -2,7 +2,7 @@ package Model.Client;
 
 import java.util.InputMismatchException;
 
-public class PersonalClient extends Client{
+public class PersonalClient{
 
     public static boolean validaCpf(String cpf) {
             // considera-se erro cpf's formados por uma sequencia de numeros iguais

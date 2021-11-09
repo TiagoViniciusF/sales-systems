@@ -1,6 +1,7 @@
 package Model.Client;
 
 
+import Model.Utils.Adress;
 import Model.Utils.JpaUtil;
 
 import javax.persistence.*;
@@ -19,22 +20,29 @@ public class Client {
     private String phone;
     private boolean status;
 
+    @OneToOne
+    private Adress adress;
 
 
     public void create(Client cliente){
 
-
-
-
-       EntityManager entityManager = JpaUtil.getEntityManager();
+        EntityManager entityManager = JpaUtil.getEntityManager();
         ClientDao clientDao = new ClientDao(entityManager);
         entityManager.getTransaction().begin();
         clientDao.creat(cliente);
         entityManager.getTransaction().commit();
         entityManager.close();
-
     }
 
+    public void createAdress(Adress adress){
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        AdressDao adressDao = new AdressDao(entityManager);
+        entityManager.getTransaction().begin();
+        adressDao.createAdress(adress);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+    }
 
 
     public Long getId() {
