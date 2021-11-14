@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 
 public class PersonalClient{
 
-    public static boolean validaCpf(String cpf) {
+    /*public static boolean validaCpf(String cpf) {
             // considera-se erro cpf's formados por uma sequencia de numeros iguais
             if (cpf.equals("00000000000") ||
                     cpf.equals("11111111111") ||
@@ -64,5 +64,7 @@ public class PersonalClient{
             return(cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." +
                     cpf.substring(6, 9) + "-" + cpf.substring(9, 11));
         }
+        */
+
 
 }

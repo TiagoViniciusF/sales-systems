@@ -10,17 +10,19 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal price;
     private String nome;
+    private BigDecimal quantity;
+    private BigDecimal price;
     @ManyToOne
     private Category category;
 
 
 
-    public Product(BigDecimal price, String nome, Category category){
+    public Product(String nome,BigDecimal quantity, BigDecimal price, Category category){
         this.price = price;
         this.nome = nome;
         this.category = category;
+        this.quantity = quantity;
 
     }
 

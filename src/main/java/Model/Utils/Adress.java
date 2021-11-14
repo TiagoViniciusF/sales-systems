@@ -14,6 +14,14 @@ public class Adress {
     private String state;
     private String city;
 
+    public Adress(String street, String number, String state, String city) {
+        this.street = street;
+        this.number = number;
+        this.state = state;
+        this.city = city;
+    }
+
+
     public String getStreet() {
         return street;
     }

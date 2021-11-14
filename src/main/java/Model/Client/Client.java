@@ -10,40 +10,24 @@ import javax.persistence.*;
 
 public class Client {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String document;
+    private Integer documentType;
     private String phone;
     private boolean status;
-
     @OneToOne
     private Adress adress;
 
-
-    public void create(Client cliente){
-
-        EntityManager entityManager = JpaUtil.getEntityManager();
-        ClientDao clientDao = new ClientDao(entityManager);
-        entityManager.getTransaction().begin();
-        clientDao.creat(cliente);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+    public Client(String name, String document,Integer documentType, String phone, boolean status, Adress adress) {
+        this.name = name;
+        this.document = document;
+        this.phone = phone;
+        this.status = status;
+        this.adress = adress;
     }
-
-    public void createAdress(Adress adress){
-        EntityManager entityManager = JpaUtil.getEntityManager();
-        AdressDao adressDao = new AdressDao(entityManager);
-        entityManager.getTransaction().begin();
-        adressDao.createAdress(adress);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-
-    }
-
 
     public Long getId() {
         return id;
@@ -65,9 +49,6 @@ public class Client {
         return document;
     }
 
-    public void setDocument(String document) {
-        this.document = document;
-    }
 
     public String getPhone() {
         return phone;
@@ -85,7 +66,26 @@ public class Client {
         this.status = status;
     }
 
+    //TODO PASSAR METODOS PARA CAMADA DE SERVICE
+    public void create(Client cliente){
 
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        ClientDao clientDao = new ClientDao(entityManager);
+        entityManager.getTransaction().begin();
+        clientDao.creat(cliente);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    public void createAdress(Adress adress){
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        AdressDao adressDao = new AdressDao(entityManager);
+        entityManager.getTransaction().begin();
+        adressDao.createAdress(adress);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+    }
 
 
 }
