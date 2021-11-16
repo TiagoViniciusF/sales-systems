@@ -11,6 +11,5 @@ public class ProductDao {
         public void creatProduct(Product product){
             this.entityManager.persist(product);
         }
-
-
 }
+

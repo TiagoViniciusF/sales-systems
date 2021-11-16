@@ -1,6 +1,7 @@
 package Model.Client;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ClientDao {
     private EntityManager entityManager;
@@ -11,4 +12,9 @@ public class ClientDao {
     public void creat(Client cliente){
         this.entityManager.persist(cliente);
     }
+
+
+
 }
+
+

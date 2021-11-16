@@ -13,6 +13,10 @@ public class Category {
     private Long id;
     private String nome;
 
+    public Category(String nome){
+        this.nome = nome;
+    }
+
     public String getNome() {
         return nome;
     }

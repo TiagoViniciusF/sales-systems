@@ -3,8 +3,10 @@ package Model.Client;
 
 import Model.Utils.Adress;
 import Model.Utils.JpaUtil;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 
@@ -13,6 +15,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String name;
     private String document;
     private Integer documentType;
@@ -24,6 +27,7 @@ public class Client {
     public Client(String name, String document,Integer documentType, String phone, boolean status, Adress adress) {
         this.name = name;
         this.document = document;
+        this.documentType = documentType;
         this.phone = phone;
         this.status = status;
         this.adress = adress;
@@ -88,6 +92,13 @@ public class Client {
     }
 
 
+    public List<Client> listClients() {
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        ClientDao clientDao = new ClientDao(entityManager);
+        String jpql = "SELECT c FROM Client c";
+        return entityManager.createQuery(jpql, Client.class).getResultList();
+
+    }
 }
 
 
