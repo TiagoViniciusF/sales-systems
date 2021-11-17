@@ -1,9 +1,9 @@
 import Model.Client.Client;
-import Model.Client.ClientDao;
 import Model.Product.Category;
 import Model.Product.Product;
 import Model.Utils.Adress;
 import Model.Utils.Document;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +13,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("O que deseja fazer?");
-        System.out.println("Digite 1 para cadastrar clientes, 2 para cadastrar Produtos");
+        System.out.println("Digite 1 para cadastrar clientes, 2 para cadastrar Produtos, 3 para listar os clientes");
         int option = Integer.parseInt(scanner.nextLine());
 
 
@@ -77,6 +77,12 @@ public class Main {
             Product product = new Product(name, quantity, price, category);
             product.createProduct(product);
             System.out.println("Produto criado com sucesso");
+        }
+
+        if(option == 3){
+            Client client = new Client();
+         List<Client> searchClient = client.listClients();
+         searchClient.forEach(listClient -> System.out.println(listClient.getName()));
         }
         scanner.close();
     }

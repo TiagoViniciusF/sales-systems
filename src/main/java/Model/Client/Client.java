@@ -24,6 +24,10 @@ public class Client {
     @OneToOne
     private Adress adress;
 
+    public Client(){
+
+    }
+
     public Client(String name, String document,Integer documentType, String phone, boolean status, Adress adress) {
         this.name = name;
         this.document = document;
@@ -94,7 +98,6 @@ public class Client {
 
     public List<Client> listClients() {
         EntityManager entityManager = JpaUtil.getEntityManager();
-        ClientDao clientDao = new ClientDao(entityManager);
         String jpql = "SELECT c FROM Client c";
         return entityManager.createQuery(jpql, Client.class).getResultList();
 
