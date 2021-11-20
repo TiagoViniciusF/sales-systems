@@ -84,6 +84,15 @@ public class Main {
          List<Client> searchClient = client.listClients();
          searchClient.forEach(listClient -> System.out.println(listClient.getName()));
         }
+
+
+        if(option == 4){
+            System.out.println("Informe o ID do ciente que deseja excluir");
+           var id = Long.parseLong(scanner.nextLine());
+           Client client = new Client();
+           client.deleteClient(id);
+
+        }
         scanner.close();
     }
 }

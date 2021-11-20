@@ -21,7 +21,7 @@ public class Client {
     private Integer documentType;
     private String phone;
     private boolean status;
-    @OneToOne
+    @OneToOne (cascade= CascadeType.ALL, orphanRemoval = true)
     private Adress adress;
 
     public Client(){
@@ -37,7 +37,7 @@ public class Client {
         this.adress = adress;
     }
 
-    public Long getId() {
+    public Long getId(long l) {
         return id;
     }
 
@@ -80,6 +80,7 @@ public class Client {
         EntityManager entityManager = JpaUtil.getEntityManager();
         ClientDao clientDao = new ClientDao(entityManager);
         entityManager.getTransaction().begin();
+        cliente = entityManager.merge(cliente);
         clientDao.creat(cliente);
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -89,6 +90,7 @@ public class Client {
         EntityManager entityManager = JpaUtil.getEntityManager();
         AdressDao adressDao = new AdressDao(entityManager);
         entityManager.getTransaction().begin();
+        adress = entityManager.merge(adress);
         adressDao.createAdress(adress);
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -100,6 +102,27 @@ public class Client {
         EntityManager entityManager = JpaUtil.getEntityManager();
         String jpql = "SELECT c FROM Client c";
         return entityManager.createQuery(jpql, Client.class).getResultList();
+
+    }
+    public void deleteClient(Long id){
+        EntityManager entityManager = JpaUtil.getEntityManager();
+        Client c = entityManager.find(Client.class, id);
+        if (c != null) {
+            ClientDao clientDao = new ClientDao(entityManager);
+            entityManager.getTransaction().begin();
+            clientDao.delete(c);
+            entityManager.getTransaction().commit();
+            System.out.println("Registro Excluido");
+        }else {
+            System.out.println("Registro não encontrado");
+        }
+        entityManager.close();
+
+
+
+
+
+
 
     }
 }
