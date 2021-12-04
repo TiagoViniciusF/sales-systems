@@ -17,16 +17,16 @@ public class Product {
     private Category category;
 
 
-
-    public Product(String nome,BigDecimal quantity, BigDecimal price, Category category){
-        this.price = price;
+    public Product(String nome, BigDecimal quantity, BigDecimal price, Category category) {
         this.nome = nome;
-        this.category = category;
         this.quantity = quantity;
+        this.price = price;
+        this.category = category;
+
 
     }
 
-    public void createProduct(Product product){
+    public void createProduct(Product product) {
         EntityManager entityManager = JpaUtil.getEntityManager();
         ProductDao productDao = new ProductDao(entityManager);
         entityManager.getTransaction().begin();
@@ -35,4 +35,35 @@ public class Product {
         entityManager.close();
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
