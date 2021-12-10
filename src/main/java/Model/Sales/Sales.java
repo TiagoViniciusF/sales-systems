@@ -20,7 +20,7 @@ public class Sales {
     @ManyToOne (cascade= CascadeType.ALL)
     private Client client;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "sales")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sales")
     private List<ItemSales> itemSales = new ArrayList<>();
 
     public Sales(){
